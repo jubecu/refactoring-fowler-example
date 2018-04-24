@@ -39,14 +39,12 @@ public class Customer {
 			double thisAmount = 0;
 			Rental renta = rentals.next();
 			// determine amounts for each line
-			thisAmount = renta.forAmount();
+			thisAmount = renta.getAmount();
 			
 			// add frequent renter points
 			frequentRenterPoints++;
 			// add bonus for a two day new release rental
-			if ((renta.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-					&& renta.getDaysRented() > 1)
-				frequentRenterPoints++;
+			frequentRenterPoints += renta.getFrequentRenterPoints();
 			// show figures for this rental
 			result += "\t" + renta.getMovie().getTitle() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
